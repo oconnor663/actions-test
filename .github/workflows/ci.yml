@@ -19,7 +19,7 @@ jobs:
         channel: [stable, beta, nightly]
 
     steps:
-    - run: apt-get install musl
+    - run: sudo apt-get install musl
       if: matrix.target.toolchain == 'x86_64-unknown-linux-musl'
     - uses: actions/checkout@v1
     - uses: actions-rs/toolchain@v1
