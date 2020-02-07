@@ -11,7 +11,6 @@ jobs:
       matrix:
         target: [
           { "os": "ubuntu-latest",  "toolchain": "x86_64-unknown-linux-gnu",  "name": "Linux GNU" },
-          { "os": "ubuntu-latest",  "toolchain": "x86_64-unknown-linux-musl", "name": "Linux musl" },
           { "os": "macOS-latest",   "toolchain": "x86_64-apple-darwin",       "name": "macOS" },
           { "os": "windows-latest", "toolchain": "x86_64-pc-windows-msvc",    "name": "Windows MSVC" },
           { "os": "windows-latest", "toolchain": "x86_64-pc-windows-gnu",     "name": "Windows GNU" }
@@ -19,14 +18,6 @@ jobs:
         channel: [stable, beta, nightly]
 
     steps:
-    - run: sudo apt-get update && sudo apt-get install musl-tools libgcc1
-      if: matrix.target.toolchain == 'x86_64-unknown-linux-musl'
-    - run: which rustc
-      if: matrix.target.toolchain == 'x86_64-unknown-linux-musl'
-    - run: ldd $(which rustc)
-      if: matrix.target.toolchain == 'x86_64-unknown-linux-musl'
-    - run: rustc -V
-      if: matrix.target.toolchain == 'x86_64-unknown-linux-musl'
     - uses: actions/checkout@v1
     - uses: actions-rs/toolchain@v1
       with:
