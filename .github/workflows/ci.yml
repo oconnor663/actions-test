@@ -4,17 +4,17 @@ on: [push, pull_request]
 
 jobs:
   cargo_tests:
-    name: ${{ matrix.channel }} ${{ matrix.target.toolchain }}
+    name: ${{ matrix.target.name }} ${{ matrix.channel }}
     runs-on: ${{ matrix.target.os }}
     strategy:
       fail-fast: false
       matrix:
         target: [
-          { "os": "linux-latest",   "toolchain": "x86_64-unknown-linux-gnu" },
-          { "os": "linux-latest",   "toolchain": "x86_64-unknown-linux-musl" },
-          { "os": "macOS-latest",   "toolchain": "x86_64-apple-darwin" },
-          { "os": "windows-latest", "toolchain": "x86_64-pc-windows-msvc" },
-          { "os": "windows-latest", "toolchain": "x86_64-pc-windows-gnu" }
+          { "os": "ubuntu-latest",  "toolchain": "x86_64-unknown-linux-gnu",  "name": "Linux GNU" },
+          { "os": "ubuntu-latest",  "toolchain": "x86_64-unknown-linux-musl", "name": "Linux musl" },
+          { "os": "macOS-latest",   "toolchain": "x86_64-apple-darwin",       "name": "macOS" },
+          { "os": "windows-latest", "toolchain": "x86_64-pc-windows-msvc",    "name": "Windows MSVC" },
+          { "os": "windows-latest", "toolchain": "x86_64-pc-windows-gnu",     "name": "Windows GNU" }
         ]
         channel: [stable, beta, nightly]
 
