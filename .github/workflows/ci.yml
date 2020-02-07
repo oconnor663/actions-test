@@ -25,6 +25,8 @@ jobs:
       if: matrix.target.toolchain == 'x86_64-unknown-linux-musl'
     - run: ldd $(which rustc)
       if: matrix.target.toolchain == 'x86_64-unknown-linux-musl'
+    - run: rustc -V
+      if: matrix.target.toolchain == 'x86_64-unknown-linux-musl'
     - uses: actions/checkout@v1
     - uses: actions-rs/toolchain@v1
       with:
