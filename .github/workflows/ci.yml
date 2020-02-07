@@ -25,4 +25,5 @@ jobs:
         toolchain: ${{ format('{0}-{1}', matrix.channel, matrix.target.toolchain) }}
         profile: minimal
         override: true
-    - run: cargo test
+    - run: cargo test -vv
+    - run: cargo test --release -vv
